@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:responsive/consts.dart';
 import 'package:responsive/desktop_screen.dart';
+import 'package:responsive/mobile_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +21,21 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const DesktopScreen(),
+      home: LayoutBuilder(builder: (context, constraints) {
+        print(constraints.minWidth.toInt());
+        return constraints.minWidth.toInt() > 670
+            ? MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: const TextScaler.linear(1.25),
+                ),
+                child: const DesktopScreen())
+            : MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaler: const TextScaler.linear(0.8),
+                ),
+                child: const MobileScreen(),
+              );
+      }),
     );
   }
 }
