@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:responsive/consts.dart';
 import 'package:responsive/desktop_screen.dart';
 
 void main() {
@@ -8,17 +9,18 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: kPrimaryColor,
+          primary: kPrimaryColor,
+        ),
         useMaterial3: true,
       ),
       home: const DesktopScreen(),
     );
   }
 }
-
-
